@@ -1,0 +1,17 @@
+nome_equipe = "";
+nome_lider = "";
+ano_fundacao = "";
+print("Digite o nome da equipe: ");
+input(nome_equipe);
+print("----------");
+print("Digite o nome do líder da equipe: ");
+input(nome_lider);
+print("----------");
+print("Digite o ano de fundação da equipe: ");
+input(ano_fundacao);
+print("----------");
+print("Sua o nome da sua equipe é: ", nome_equipe);
+print("O nome do líder da sua equipe é: ", nome_lider);
+print("O ano de fundação da sua equipe é: ", ano_fundacao);    
+print("----fim----");
+print("Cadastro realizado com sucesso!");
