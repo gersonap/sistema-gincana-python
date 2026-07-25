@@ -1,3 +1,4 @@
+lista_equipes = []
 while True:
      # Este programa solicita ao usuário informações sobre uma equipe e exibe essas informações na tela.
     nome_equipe = input("Digite o nome da equipe: ")
@@ -10,6 +11,7 @@ while True:
 
     # Exibe as informações fornecidas pelo usuário
     print(f"-- O nome da sua equipe é: {nome_equipe}")
+    lista_equipes.append(nome_equipe)
     print(f"-- Nome do líder de sua equipe é: {nome_lider}")
     print(f"-- Ano de fundação da sua equipe é: {ano_fundacao}")
     print(f"-- Sua equipe tem {int(2026) - int(ano_fundacao)} anos de existência")
@@ -32,3 +34,8 @@ while True:
         break
 print("--- FIM DO PROCESSO DE CREDENCIAMENTO ---")
 print("### Programa finalizado!")
+#for equipe in lista_equipes:
+#    print(f"-- {equipe}")
+print(f"Equipes cadastradas: {', '.join(lista_equipes)}")
+
+
