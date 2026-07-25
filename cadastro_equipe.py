@@ -18,3 +18,10 @@ print(f"A pontuação inicial da sua equipe é: {pontuacao_inicial}")
 print("---fim---")
 
 print("Cadastro realizado com sucesso!")
+
+if qtde_membros >= 10:
+    print("STATUS: Equipe Qualificada!!!!")
+else:
+    print("STATUS: Equipe NÃO Qualificada!!!!")
+print("--- FIM DO PROCESSO DE CREDENCIAMENTO ---")
+
