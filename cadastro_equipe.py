@@ -11,7 +11,6 @@ while True:
 
     # Exibe as informações fornecidas pelo usuário
     print(f"-- O nome da sua equipe é: {nome_equipe}")
-    lista_equipes.append(nome_equipe)
     print(f"-- Nome do líder de sua equipe é: {nome_lider}")
     print(f"-- Ano de fundação da sua equipe é: {ano_fundacao}")
     print(f"-- Sua equipe tem {int(2026) - int(ano_fundacao)} anos de existência")
@@ -21,6 +20,12 @@ while True:
     print(" ")
     # print("Cadastro realizado com sucesso!")
     print(" ")
+    dados_equipe = {"nome": nome_equipe, 
+                    "lider": nome_lider,
+                    "ano": ano_fundacao, 
+                    "membros": qtde_membros, 
+                    "pontuacao": pontuacao_inicial}
+    lista_equipes.append(dados_equipe)
     if qtde_membros >= 10:
         print("STATUS: Equipe Qualificada!!!!")
         print(" ")
@@ -34,8 +39,8 @@ while True:
         break
 print("--- FIM DO PROCESSO DE CREDENCIAMENTO ---")
 print("### Programa finalizado!")
-#for equipe in lista_equipes:
-#    print(f"-- {equipe}")
-print(f"Equipes cadastradas: {', '.join(lista_equipes)}")
-
-
+print(" ")
+print(" ")
+for equipe in lista_equipes:
+    print(f"-- Equipe: {equipe['nome']} \n| Líder: {equipe['lider']} \n| Ano de fundação: {equipe['ano']} \n| Quantidade de membros: {equipe['membros']} \n| Pontuação inicial: {equipe['pontuacao']}")
+#print(f"Equipes cadastradas: {', '.join(lista_equipes)}")
