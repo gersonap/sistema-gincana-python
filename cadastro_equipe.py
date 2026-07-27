@@ -7,6 +7,13 @@ class Equipe:
         self.idade = 2026 - self.ano_fundacao
         self.pontuacao_inicial = self.qtde_membros * 50
 
+    def verificar_qualificacao(self):
+        if self.qtde_membros >= 5:
+            return "#### EQUIPE Qualificada!"
+        else:
+            return "#### EQUIPE Não Qualificada!"
+
+
 lista_equipes = []
 
 while True:
@@ -37,4 +44,4 @@ print()
 print("Listagem das equipes cadastradas:")
 
 for equipe in lista_equipes:
-    print(f"\n-- Equipe: {equipe.nome} \n| Líder: {equipe.lider} \n| Ano de fundação: {equipe.ano_fundacao}\n| Idade: {equipe.idade} \n| Quantidade de membros: {equipe.qtde_membros} \n| Pontuação inicial: {equipe.pontuacao_inicial}\n")
+    print(f"\n-- Equipe: {equipe.nome} \n| Líder: {equipe.lider} \n| Ano de fundação: {equipe.ano_fundacao}\n| Idade: {equipe.idade} \n| Quantidade de membros: {equipe.qtde_membros} \n| Pontuação inicial: {equipe.pontuacao_inicial}\n| {equipe.verificar_qualificacao()}\n")
