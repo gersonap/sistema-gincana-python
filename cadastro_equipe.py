@@ -1,5 +1,5 @@
 class Equipe:
-    def __init__(self, nome, lider, ano_fundacao, qtde_membros, __pontuacao):
+    def __init__(self, nome, lider, ano_fundacao, qtde_membros, pontuacao):
         self.nome = nome
         self.lider = lider
         self.ano_fundacao = int(ano_fundacao)
