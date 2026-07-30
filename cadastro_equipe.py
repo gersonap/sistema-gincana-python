@@ -1,25 +1,27 @@
 class Equipe:
-    def __init__(self, nome, lider, ano_fundacao, qtde_membros, pontuacao):
+    def __init__(self, nome, lider, ano_fundacao, qtde_membros, __pontuacao):
         self.nome = nome
         self.lider = lider
         self.ano_fundacao = int(ano_fundacao)
         self.qtde_membros = int(qtde_membros)
         self.idade = 2026 - self.ano_fundacao
         # self.pontuacao_inicial = self.qtde_membros * 50
-        self.pontuacao = pontuacao
+        self.__pontuacao = pontuacao
 
     def registrar_pontuacao(self, valor):
-        self.pontuacao += valor
+        self.__pontuacao += valor
 
     def aplicar_penalidade(self, valor):
-        self.pontuacao -= valor
+        self.__pontuacao -= valor
 
     def verificar_qualificacao(self):
         if self.qtde_membros >= 5:
             return "#### EQUIPE Qualificada!"
         else:
             return "#### EQUIPE Não Qualificada!"
-
+    @property
+    def pontuacao(self):
+        return self.__pontuacao 
 
 lista_equipes = []
 
@@ -57,5 +59,6 @@ for equipe in lista_equipes:
 # Realizando testes de pontuação e penalidade
 print("### Testando pontuação e penalidade ###")
 lista_equipes[0].registrar_pontuacao(100)
+lista_equipes[0].__pontuacao = 999999
 print(f"A equipe {lista_equipes[0].nome} agora tem pontuação {lista_equipes[0].pontuacao} pontos!")
 
