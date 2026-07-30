@@ -1,3 +1,4 @@
+import sqlite3
 class Equipe:
     def __init__(self, nome, lider, ano_fundacao, qtde_membros, pontuacao):
         self.nome = nome
@@ -23,8 +24,6 @@ class Equipe:
     def pontuacao(self):
         return self.__pontuacao 
 
-lista_equipes = []
-
 while True:
     # Este programa solicita ao usuário informações sobre uma equipe e exibe essas informações na tela.
     nome_equipe = input("Digite o nome da equipe: ")
@@ -33,7 +32,18 @@ while True:
     qtde_membros = int(input("Digite a quantidade de membros da equipe: "))
     pontuacao = int(input("Digite a pontuação inicial da equipe: "))
     nova_equipe = Equipe(nome_equipe, nome_lider, ano_fundacao, qtde_membros, pontuacao)
-    lista_equipes.append(nova_equipe)
+    
+    # conectando ao banco de dados SQLite
+    conexao = sqlite3.connect('gincana.db')
+    cursor = conexao.cursor()
+    # inserindo os dados da equipe na tabela
+    cursor.execute("""INSERT INTO equipes (nome, lider, ano_fundacao, qtde_membros, pontuacao) VALUES (?, ?, ?, ?, ?)""", 
+                   (nova_equipe.nome, nova_equipe.lider, nova_equipe.ano_fundacao, nova_equipe.qtde_membros, nova_equipe.pontuacao))
+    # salvando as alterações no banco de dados
+    conexao.commit()
+    # fechando a conexão com o banco de dados
+    conexao.close()
+    
     print("\nInformações da equipe cadastrada:")
 
     # Exibe as informações fornecidas pelo usuário
@@ -51,14 +61,19 @@ print("--- FIM DO PROCESSO DE CREDENCIAMENTO ---")
 print("### Programa finalizado!")
 print()
 print()
-print("Listagem das equipes cadastradas:")
+print("\n--- EQUIPES SALVAS NO BANCO DE DADOS ---")
 
-for equipe in lista_equipes:
-    print(f"\n-- Equipe: {equipe.nome} \n| Líder: {equipe.lider} \n| Ano de fundação: {equipe.ano_fundacao}\n| Idade: {equipe.idade} \n| Quantidade de membros: {equipe.qtde_membros} \n| Pontuação inicial: {equipe.pontuacao}\n| {equipe.verificar_qualificacao()}\n")
+# conectando ao banco de dados SQLite para realizar a consulta
+conexao = sqlite3.connect('gincana.db')
+cursor = conexao.cursor()
+# realizando a consulta para obter todas as equipes cadastradas
+cursor.execute("SELECT * FROM equipes")
+# obtendo os resultados da consulta
+equipes = cursor.fetchall()
+# exibindo as informações de cada equipe cadastrada
+for linha in equipes:
+    print(linha)
+    #print(f"ID: {linha[0]}, Nome: {linha[1]}, Líder: {linha[2]}, Ano de Fundação: {linha[3]}, Quantidade de Membros: {linha[4]}, Pontuação: {linha[5]}")
 
-# Realizando testes de pontuação e penalidade
-print("### Testando pontuação e penalidade ###")
-lista_equipes[0].registrar_pontuacao(100)
-lista_equipes[0].__pontuacao = 999999
-print(f"A equipe {lista_equipes[0].nome} agora tem pontuação {lista_equipes[0].pontuacao} pontos!")
-
+# fechando a conexão com o banco de dados
+conexao.close()
