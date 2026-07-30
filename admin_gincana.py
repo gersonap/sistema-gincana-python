@@ -39,4 +39,6 @@ cursor.execute("""SELECT * FROM equipes""")
 equipes = cursor.fetchall()
 for linha in equipes:
     print(f"-- ID: {linha[0]} | Nome da equipe: {linha[1]} | Nome do líder: {linha[2]} | Ano de fundação: {linha[3]} | Quantidade de membros: {linha[4]} | Pontuação: {linha[5]}")
+# Fechando a conexão com o banco de dados
+conexao.close()
 print("--- FIM do PROGRAMA ---")
