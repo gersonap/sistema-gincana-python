@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gincana - Página Inicial</title>
+</head>
+<body>
+    <h1>Placar da Gincana</h1>
+    <hr>
+    
+    <ul>
+        {% for equipe in equipes %}
+            <li>
+                <strong>{{ equipe.nome }}</strong> 
+                (Líder: {{ equipe.lider }}) - 
+                Pontos: {{ equipe.pontuacao }}
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
