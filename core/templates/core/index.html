@@ -15,6 +15,10 @@
 
     <div class="container">
         <h2 class="mb-4">Ranking das Equipes</h2>
+        <!-- Adicione um campo de busca para filtrar as equipes pelo nome -->
+        <div class="mb-4">
+        <input type="text" id="buscaEquipe" class="form-control form-control-lg border-primary" placeholder="Buscar equipe pelo nome...">
+        </div>
         
         <div class="row">
             
@@ -23,7 +27,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm">
                     <div class="card-header bg-success text-white">
-                        <h5 class="mb-0">{{ equipe.nome }}</h5>
+                        <h5 class="mb-0 nome-equipe">{{ equipe.nome }}</h5>
                     </div>
                     <div class="card-body">
                         <p class="card-text"><strong>Líder:</strong> {{ equipe.lider }}</p>
@@ -37,6 +41,31 @@
             
         </div>
     </div>
+<script>
+        // Seleciona a barra de pesquisa
+        const campoBusca = document.getElementById('buscaEquipe');
+        
+        // Seleciona todos os cartões de equipes (a classe col-md-4 é quem envolve o card)
+        const cartoes = document.querySelectorAll('.col-md-4');
 
+        // Fica ouvindo cada tecla que o usuário digita ('input')
+        campoBusca.addEventListener('input', function() {
+            // Pega o texto digitado e converte para minúsculas (para não dar erro de Maiúscula/Minúscula)
+            const textoDigitado = campoBusca.value.toLowerCase();
+
+            // Faz um laço de repetição JS passando por cada cartão da tela
+            cartoes.forEach(function(cartao) {
+                // Encontra o h5 dentro deste cartão específico e pega o texto dele
+                const nomeDaEquipe = cartao.querySelector('.nome-equipe').innerText.toLowerCase();
+
+                // Verifica se o texto digitado está contido no nome da equipe
+                if (nomeDaEquipe.includes(textoDigitado)) {
+                    cartao.style.display = 'block'; // Mostra o cartão
+                } else {
+                    cartao.style.display = 'none';  // Esconde o cartão
+                }
+            });
+        });
+    </script>
 </body>
 </html>
