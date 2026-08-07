@@ -19,5 +19,6 @@ from django.urls import path, include # <-- importante adicionar o include para 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('contas/', include('django.contrib.auth.urls')), # <-- adicionando as urls de autenticação do Django   
     path('', include('core.urls')),
 ]
